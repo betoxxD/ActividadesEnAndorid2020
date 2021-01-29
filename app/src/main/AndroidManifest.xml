@@ -37,6 +37,9 @@
         <activity android:name=".ActividadDOs" >
 
         </activity>
+        <provider
+            android:authorities="net.ivanvega.actividadesenandorid.provider"
+            android:name=".provider.MiProveedorContenido"></provider>
     </application>
 
 </manifest>

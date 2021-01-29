@@ -109,6 +109,19 @@ public class DAOUsuarios {
         return usuario;
     }
 
+    public Cursor getOneByIDCursor(long id){
+
+        Cursor cursor = null;
+
+
+        cursor = ad.rawQuery("select * from " + DB.TABLE_USUARIOS_NAME + " where " +
+                        DB.COLUMS_TABLEUSUARIOS[0]  + "=?",
+                new String[]{ String.valueOf( id)} );
+
+
+        return cursor;
+    }
+
     public Usuario autenticar(Usuario usuario){
 
         Cursor c = ad.query( DB.TABLE_USUARIOS_NAME  ,
@@ -140,6 +153,14 @@ public class DAOUsuarios {
         return ad.insert(DB.TABLE_USUARIOS_NAME,
                 null ,
                   cv);
+
+    }
+
+    public long insert(ContentValues cv){
+
+        return ad.insert(DB.TABLE_USUARIOS_NAME,
+                null ,
+                cv);
 
     }
 
