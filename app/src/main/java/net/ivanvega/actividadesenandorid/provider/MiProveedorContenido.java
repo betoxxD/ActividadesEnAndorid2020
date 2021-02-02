@@ -35,7 +35,7 @@ public class MiProveedorContenido extends ContentProvider {
          * Sets the code for a single row to 2. In this case, the "#" wildcard is
          * used. "content://com.example.app.provider/table3/3" matches, but
          * "content://com.example.app.provider/table3 doesn't.
-         * content://net.ivanvega.actividadesenandorid.provider/usuarios/#
+         * content://net.ivanvega.actividadesenandorid.provider/usuarios/89
          */
         uriMatcher.addURI("net.ivanvega.actividadesenandorid.provider", "usuarios/#", 2);
 
@@ -51,7 +51,7 @@ public class MiProveedorContenido extends ContentProvider {
         uriMatcher.addURI("net.ivanvega.actividadesenandorid.provider", "usuarios/*", 3);
     }
 
-    DAOUsuarios daoUsuarios = new DAOUsuarios(getContext());
+    DAOUsuarios daoUsuarios ;
     @Override
     public boolean onCreate() {
         daoUsuarios = new DAOUsuarios(getContext());
@@ -84,7 +84,24 @@ public class MiProveedorContenido extends ContentProvider {
     @Nullable
     @Override
     public String getType(@NonNull Uri uri) {
-        return null;
+        String result="";
+
+        //vnd.android.cursor.dir/vnd.net.ivanvega.actividadesenandorid.provider.usuarios    varios registros
+        //vnd.android.cursor.item/vnd.net.ivanvega.actividadesenandorid.provider.usuarios  uno   registro
+
+        switch (uriMatcher.match(uri)){
+            case 1:
+                result = "vnd.android.cursor.dir/vnd.net.ivanvega.actividadesenandorid.provider.usuarios";
+                break;
+
+            case 2:
+                result = "vnd.android.cursor.item/vnd.net.ivanvega.actividadesenandorid.provider.usuarios";
+                break;
+            case 3:
+                result = "vnd.android.cursor.dir/vnd.net.ivanvega.actividadesenandorid.provider.usuarios";
+                break;
+        }
+        return result;
     }
 
     @Nullable
@@ -110,7 +127,7 @@ public class MiProveedorContenido extends ContentProvider {
             case 2:
                     result =
                             (daoUsuarios.delete
-                                    (Long.parseLong( uri.getLastPathSegment()))) ? 1:0;
+                                        (Long.parseLong( uri.getLastPathSegment()))) ? 1:0;
                 break;
         }
 

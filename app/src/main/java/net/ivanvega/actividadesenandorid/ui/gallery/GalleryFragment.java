@@ -1,5 +1,6 @@
 package net.ivanvega.actividadesenandorid.ui.gallery;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import net.ivanvega.actividadesenandorid.ActivityRegitro;
 import net.ivanvega.actividadesenandorid.R;
 
 public class GalleryFragment extends Fragment {
@@ -30,6 +32,7 @@ public class GalleryFragment extends Fragment {
                 textView.setText(s);
             }
         });
+        startActivity(new Intent(getActivity(), ActivityRegitro.class));
         return root;
     }
 }

@@ -39,7 +39,9 @@
         </activity>
         <provider
             android:authorities="net.ivanvega.actividadesenandorid.provider"
-            android:name=".provider.MiProveedorContenido"></provider>
+            android:name=".provider.MiProveedorContenido"
+            android:exported="true"
+            ></provider>
     </application>
 
 </manifest>

@@ -57,22 +57,6 @@ public class MainActivityMenuPrincipal extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-                Toast.makeText(getBaseContext(), menuItem.getTitle().toString(),
-                        Toast.LENGTH_LONG).show();
-
-                if(menuItem.getItemId()==R.id.nav_gallery){
-                    solicitarPermisos();
-                }
-
-
-                return false;
-            }
-        });
     }
 
     private void solicitarPermisos() {
