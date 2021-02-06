@@ -55,7 +55,6 @@ public class MiProveedorContenido extends ContentProvider {
     @Override
     public boolean onCreate() {
         daoUsuarios = new DAOUsuarios(getContext());
-
         return false;
     }
 
@@ -63,7 +62,6 @@ public class MiProveedorContenido extends ContentProvider {
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] strings, @Nullable String s, @Nullable String[] strings1, @Nullable String s1) {
         Cursor result=null;
-
         switch (uriMatcher.match(uri)){
             case 1:
                 //base de datos
@@ -73,11 +71,9 @@ public class MiProveedorContenido extends ContentProvider {
             case 2:
                //base de datos
                String id =  uri.getLastPathSegment();
-
                result = daoUsuarios.getOneByIDCursor( Long.parseLong(id) );
 
         }
-
         return result;
     }
 
@@ -125,17 +121,22 @@ public class MiProveedorContenido extends ContentProvider {
             case 1:
                 break;
             case 2:
-                    result =
-                            (daoUsuarios.delete
-                                        (Long.parseLong( uri.getLastPathSegment()))) ? 1:0;
+                    result = (daoUsuarios.delete(Long.parseLong( uri.getLastPathSegment()))) ? 1:0;
                 break;
         }
-
         return result;
     }
 
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String s, @Nullable String[] strings) {
-        return 0;
+        int result=0;
+        switch (uriMatcher.match(uri)){
+            case 1:
+                break;
+            case 2:
+                result = (daoUsuarios.update(contentValues,Long.parseLong( uri.getLastPathSegment()))) ? 1:0;
+                break;
+        }
+        return result;
     }
 }
