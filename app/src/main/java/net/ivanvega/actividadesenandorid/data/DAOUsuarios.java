@@ -36,9 +36,8 @@ public class DAOUsuarios {
     public boolean delete (long id){
 
         return ad.delete(DB.TABLE_USUARIOS_NAME,
-                "_id=? and status=?",
-                new String[]{String.valueOf(id), "VI"}) >  0;
-
+                "_id=?",
+                new String[]{String.valueOf(id)}) >  0;
     }
 
     public boolean update(Usuario usuario){
